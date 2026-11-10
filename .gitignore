@@ -1,0 +1,61 @@
+########################################################################
+#                                                                      #
+#                              .gitignore                              #
+#                                                                      #
+########################################################################
+# Author:            Kevin Street
+# Created on:        2026-11-10
+# Last modified on:  2026-11-10
+#
+# Keeps secrets, keys, Terraform's providers and state, the bootstrap's
+# backend file, caches and runtime logs out of git.
+
+# Secrets and keys: never committed
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+id_*
+secrets/
+*.tfvars
+backend.hcl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Terraform's providers and local state
+.terraform/
+*.tfstate
+*.tfstate.*
+
+
+
+# Runtime logs: kds.logs writes <log_dir>/YYYY-MM-DD.jsonl
+logs/
+*.log
+
+# Generated files and local databases: none belong in git
+data/generated/
+.cache/
+*.sqlite
+*.db
+# Node, which nothing here uses, should a tool bring it
+node_modules/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+

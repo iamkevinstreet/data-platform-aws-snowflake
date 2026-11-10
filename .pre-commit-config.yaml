@@ -1,0 +1,53 @@
+########################################################################
+#                                                                      #
+#                       .pre-commit-config.yaml                        #
+#                                                                      #
+########################################################################
+# Author:            Kevin Street
+# Created on:        2026-11-10
+# Last modified on:  2026-11-10
+#
+# Checks every commit before it is made: secrets, ruff, YAML, header
+# dates and the code standard.
+#
+# Install once per clone: pre-commit install
+# Hook versions are pinned to commit SHAs; the tag is in the comment.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e  # frozen: v8.30.1
+    hooks:
+      - id: gitleaks
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 25bcf95026b96e2dd3c0aec3090c3d6ef6ca2e6c  # frozen: v0.17.3
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=2000]
+      - id: detect-private-key
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/adrienverge/yamllint
+    rev: 79a6b2b1392eaf49cdd32ac4f14be1a809bbd8f7  # frozen: v1.37.1
+    hooks:
+      - id: yamllint
+  - repo: local
+    hooks:
+      - id: kds-standards-stamp
+        name: kds-standards stamp (header titles and dates)
+        entry: uv run --no-sync kds-standards stamp
+        language: system
+        types_or: [python, toml, yaml, makefile, dockerfile]
+      - id: kds-standards-check
+        name: kds-standards check
+        entry: uv run --no-sync kds-standards check .
+        language: system
+        pass_filenames: false

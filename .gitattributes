@@ -1,0 +1,19 @@
+########################################################################
+#                                                                      #
+#                            .gitattributes                            #
+#                                                                      #
+########################################################################
+# Author:            Kevin Street
+# Created on:        2026-11-10
+# Last modified on:  2026-11-10
+#
+# LF line endings everywhere, and the generated files GitHub and the
+# checker should skip.
+
+* text=auto eol=lf
+
+*.xlsx binary
+
+# Generated: regenerate rather than edit.
+uv.lock linguist-generated
+tests/fixtures/** linguist-generated

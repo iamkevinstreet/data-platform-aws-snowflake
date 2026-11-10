@@ -1,0 +1,85 @@
+########################################################################
+#                                                                      #
+#                            pyproject.toml                            #
+#                                                                      #
+########################################################################
+# Author:            Kevin Street
+# Created on:        2026-11-10
+# Last modified on:  2026-11-10
+#
+# The checks' environment: the tests that read the Terraform without a
+# cloud account, and ruff, mypy and pytest set to the code standard.
+# Nothing here is a package; uv installs the checks from uv.lock.
+
+[project]
+name = "data-platform-aws-snowflake"
+version = "0.1.0"
+description = "Where projects run on Snowflake in AWS: the database, warehouses, roles and secretless service users, in Terraform."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Kevin Street", email = "info@kevindstreet.com" }]
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "kds-logs>=0.7.0,<0.8",
+  "kds-args>=0.7.0,<0.8",
+  "kds-settings>=0.7.0,<0.8",
+  "kds-standards>=0.7.0,<0.8",
+  "mypy>=1.13",
+  "pip-audit>=2.7",
+  "pytest>=8.3",
+  "python-hcl2>=7",
+  "ruff==0.17.4",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+kds-args = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "args", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
+kds-logs = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "logs", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
+kds-settings = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "settings", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
+kds-standards = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "standards", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
+
+[tool.ruff]
+line-length = 99
+target-version = "py312"
+src = [".", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "BLE", "S", "C90", "PL", "RUF", "G", "D", "ANN"]
+# A module's doc block opens with its fields (Author and the dates), not a summary, so the
+# summary-first docstring rules do not fit it; kds-standards checks every function's doc block.
+ignore = ["D205", "D212", "D415", "ANN401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["support"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.per-file-ignores]
+# Tests assert and repeat expected values inline.
+"tests/**" = ["S101", "PLR2004"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["error"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["tests"]
+# The tests import their helper as pytest puts tests/ on the path.
+mypy_path = ["tests"]
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["hcl2"]
+ignore_missing_imports = true
