@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **First applied, Nov 10:** 65 resources, on an Enterprise trial. eeoc-charge-intake and
+  ai-operations then loaded and built here, each job signed in as its own service user with its
+  workflow's OIDC token: the EEOC's 127 seeds, models and tests in 30 s, the charging party's name
+  masked by a masking policy, and AI operations' 128 in 32 s. The README's pairings table now holds
+  both projects' measured times beside Databricks', from the same runs, and the credits used.
+
 ## v0.1.0, Nov 10, 2026
 
 - **The snowflake root,** for a Snowflake account on AWS: the `KDS` database with a schema per

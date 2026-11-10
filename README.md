@@ -15,12 +15,12 @@ Databricks or Snowflake.
 
 | Part | State |
 | --- | --- |
-| The snowflake root | Written and tested without an account; applied once the 30-day trial starts |
-| Deploying here | Next: [eeoc-charge-intake](https://github.com/iamkevinstreet/eeoc-charge-intake) and [ai-operations](https://github.com/iamkevinstreet/ai-operations), each loading and building here every day beside DuckDB and Databricks |
+| The snowflake root | Applied on Nov 10, 2026, from CloudShell: the `KDS` database and its 12 schemas, three X-Small warehouses under the monthly quota, four roles and their grants, and a service user for each deploying repository's two jobs, 65 resources in all |
+| Deploying here | [eeoc-charge-intake](https://github.com/iamkevinstreet/eeoc-charge-intake) and [ai-operations](https://github.com/iamkevinstreet/ai-operations): every day each loads and then builds here, each job signed in as its own service user, beside DuckDB and Databricks. The EEOC's load masks the charging party's name with a masking policy, and its build checks that it read every name masked |
 
-The trial is chosen at sign-up: Enterprise edition, which masking policies need, on AWS in US East
-(N. Virginia), beside the lake. It ends after 30 days or when its free credit runs out, whichever
-comes first; everything here is then torn down with Terraform unless kept on purpose.
+The trial is chosen at sign-up: Enterprise edition, which masking policies need, on AWS. It ends
+after 30 days or when its free credit runs out, whichever comes first; everything here is then torn
+down with Terraform unless kept on purpose.
 
 ## What it provides
 
@@ -62,16 +62,24 @@ before answering, as it should change only what was edited.
 The same projects, deployed on each pairing and measured the same way. This repository's row is
 in bold.
 
-| Pairing | Setup | The EEOC warehouse's daily run | Cost | Who the jobs run as |
-| --- | --- | --- | --- | --- |
-| [AWS with Databricks](https://github.com/iamkevinstreet/data-platform-aws-databricks) (Free Edition) | Terraform from CloudShell with a workspace token; account groups made by hand | Both loads in 58 s and 26 s, all 126 seeds, models and tests in 64 s (Nov 10) | Nothing | One person's token, the owner of what it makes; a column mask hides names from everyone |
-| **AWS with Snowflake (trial)** | **Terraform from CloudShell with a key that never leaves it** | **Not yet run** | **Trial credits, under a 20-credit monthly quota** | **A service user per job, by GitHub's OIDC token; a masking policy hides names from every role** |
+| Pairing | Setup | The EEOC's daily run | AI operations' daily run | Cost | Who the jobs run as |
+| --- | --- | --- | --- | --- | --- |
+| [AWS with Databricks](https://github.com/iamkevinstreet/data-platform-aws-databricks) (Free Edition) | Terraform from CloudShell with a workspace token; account groups made by hand | Loads in 55 s and 17 s, then all 127 seeds, models and tests in 70 s | Load in 58 s, then all 128 in 68 s | Nothing | One person's token, the owner of what it makes; a column mask hides names from everyone |
+| **AWS with Snowflake (trial)** | **Terraform from CloudShell with a key that never leaves it** | **Loads in 32 s and 22 s, then all 127 seeds, models and tests in 30 s** | **Load in 34 s, then all 128 in 32 s** | **Trial credits: 0.19 for Nov 10's three loads and three builds, under a 20-credit monthly quota** | **A service user per job, by GitHub's OIDC token; a masking policy hides names from every role** |
+
+Measured in the same daily runs on Nov 10, on the same commits: eeoc-charge-intake's
+[42887179186](https://github.com/iamkevinstreet/eeoc-charge-intake/actions/runs/42887179186) and
+ai-operations' [42887184672](https://github.com/iamkevinstreet/ai-operations/actions/runs/42887184672).
+A load runs from its command's start to dlt's report that it finished, the EEOC's review exports
+first, then the EEOC's national table; a build is dbt's own clock.
 
 ## Costs
 
-An X-Small warehouse uses one credit an hour while it runs and suspends after a minute idle, so a
-daily run of a minute or two uses a small fraction of a credit. Storage for a few megabytes is
-negligible. The monthly quota suspends every warehouse before the trial's credit can run out.
+An X-Small warehouse is billed by the second while it runs, a minute at least each time it starts,
+and suspends after a minute idle. On Nov 10 the first runs, three loads and three builds across the
+two projects, used 0.096 credits on `LOAD_WH` and 0.098 on `BUILD_WH`, 0.19 in all, as Snowflake's
+own metering reports them. Storage for a few megabytes is negligible. The monthly quota suspends
+every warehouse before the trial's credit can run out.
 
 ## Layout
 
