@@ -7,6 +7,12 @@
   workflow's OIDC token: the EEOC's 127 seeds, models and tests in 30 s, the charging party's name
   masked by a masking policy, and AI operations' 128 in 32 s. The README's pairings table now holds
   both projects' measured times beside Databricks', from the same runs, and the credits used.
+- **Each project's credits,** from the scheduled runs of Nov 11, in the pairings table and under
+  Costs: 0.082 for the EEOC's daily run and 0.079 for AI operations', warehouse time and cloud
+  services together, as Snowflake's metering reports them by the hour. They replace Nov 10's 0.19,
+  which was read before all of that day's cloud services had been metered: the complete figure for
+  its three loads and three builds is 0.23.
+- **A link to the case study** on kevindstreet.com, under the README's first paragraph.
 
 ## v0.1.0, Nov 10, 2026
 
