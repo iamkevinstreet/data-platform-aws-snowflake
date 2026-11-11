@@ -13,6 +13,8 @@
   which was read before all of that day's cloud services had been metered: the complete figure for
   its three loads and three builds is 0.23.
 - **A link to the case study** on kevindstreet.com, under the README's first paragraph.
+- **Where the first SQL runs,** in the README, the setup notes and the script's own words: a SQL
+  file in Snowsight's Workspaces, which have replaced its worksheets.
 
 ## v0.1.0, Nov 10, 2026
 

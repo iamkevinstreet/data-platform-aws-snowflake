@@ -44,9 +44,9 @@ subject, to check a refused sign-in against.
 
    The script makes a key pair in CloudShell's home (`~/.snowflake/`, readable by its owner only)
    and prints three SQL statements that make `KDS_TERRAFORM`, a service user with the public key
-   and the `ACCOUNTADMIN` role, which a resource monitor needs. Run them once in a Snowsight
-   worksheet with the `ACCOUNTADMIN` role, then give the script the account identifier,
-   ORGNAME-ACCOUNTNAME, from Snowsight's account menu.
+   and the `ACCOUNTADMIN` role, which a resource monitor needs. Run them once in Snowsight with
+   the `ACCOUNTADMIN` role, in a SQL file (Projects, Workspaces, + Add New, SQL File), then give
+   the script the account identifier, ORGNAME-ACCOUNTNAME, from Snowsight's account menu.
 3. Set what the script prints in each deploying repository: the secret `SNOWFLAKE_ACCOUNT`, the
    variable `SNOWFLAKE_DATABASE`, and the two environments, each limited to the main branch.
 
@@ -56,7 +56,8 @@ After that, `git pull` and `bash infra/snowflake.sh` again for any change. When 
 bash infra/snowflake.sh -destroy
 ```
 
-then, in a worksheet, `DROP USER KDS_TERRAFORM;`, and in CloudShell, `rm -r ~/.snowflake`.
+then, in a SQL file in Snowsight, `DROP USER KDS_TERRAFORM;`, and in CloudShell,
+`rm -r ~/.snowflake`.
 
 ## Not yet known
 

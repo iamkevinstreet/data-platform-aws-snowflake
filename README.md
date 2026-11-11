@@ -56,8 +56,8 @@ are public.
 
 From AWS CloudShell, as [infra/README.md](infra/README.md) describes: clone this repository and run
 `bash infra/snowflake.sh`. The first time, it prints the SQL that makes Terraform's own service user,
-to run once in a Snowsight worksheet. Terraform shows its plan and waits for a yes; read the plan
-before answering, as it should change only what was edited.
+to run once in Snowsight, in a SQL file under Workspaces. Terraform shows its plan and waits for a
+yes; read the plan before answering, as it should change only what was edited.
 
 ## The pairings
 

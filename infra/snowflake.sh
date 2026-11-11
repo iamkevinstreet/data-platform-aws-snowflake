@@ -6,15 +6,16 @@
 ########################################################################
 # Author:            Kevin Street
 # Created on:        2026-11-10
-# Last modified on:  2026-11-10
+# Last modified on:  2026-11-11
 #
 # Applies the snowflake root from AWS CloudShell, its state in the
 # account's Terraform state bucket under aws-snowflake/. Terraform signs
 # in as KDS_TERRAFORM, a service user with a key pair made here: the
 # private key stays in CloudShell's home, readable by its owner only,
 # and never leaves it. The first time, the script prints the SQL that
-# makes the user with the public key, to run once in a Snowsight
-# worksheet. Then Terraform shows its plan and waits for a yes.
+# makes the user with the public key, to run once in Snowsight, in a SQL
+# file under Workspaces. Then Terraform shows its plan and waits for a
+# yes.
 #
 #   bash infra/snowflake.sh
 #
@@ -50,7 +51,8 @@ PUBLIC="$(openssl rsa -in "${KEY}" -pubout 2>/dev/null | grep -v -- '-----' | tr
 
 cat <<EOF
 
-Once, in a Snowsight worksheet with the ACCOUNTADMIN role, run:
+Once, in Snowsight with the ACCOUNTADMIN role, in a SQL file (Projects, Workspaces, + Add New,
+SQL File), run:
 
   CREATE USER IF NOT EXISTS ${USER_NAME} TYPE = SERVICE DEFAULT_ROLE = ACCOUNTADMIN
     COMMENT = 'Terraform, from AWS CloudShell: data-platform-aws-snowflake.';
@@ -68,7 +70,7 @@ if [[ ! "${account}" =~ ^[A-Z0-9]+-[A-Z0-9_]+$ ]]; then
   echo "Expected ORGNAME-ACCOUNTNAME, such as MYORG-MYACCOUNT; got ${account}." >&2
   exit 1
 fi
-read -rp "Press Enter once the worksheet has run. " _
+read -rp "Press Enter once the SQL has run. " _
 
 export SNOWFLAKE_ORGANIZATION_NAME="${account%%-*}"
 export SNOWFLAKE_ACCOUNT_NAME="${account#*-}"
