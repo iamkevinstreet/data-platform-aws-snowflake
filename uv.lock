@@ -293,10 +293,10 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "kds-args", git = "https://github.com/iamkevinstreet/utils?subdirectory=args&rev=28d20c9c817795cb787023f20e4ab99af1b05957" },
-    { name = "kds-logs", git = "https://github.com/iamkevinstreet/utils?subdirectory=logs&rev=28d20c9c817795cb787023f20e4ab99af1b05957" },
-    { name = "kds-settings", git = "https://github.com/iamkevinstreet/utils?subdirectory=settings&rev=28d20c9c817795cb787023f20e4ab99af1b05957" },
-    { name = "kds-standards", git = "https://github.com/iamkevinstreet/utils?subdirectory=standards&rev=28d20c9c817795cb787023f20e4ab99af1b05957" },
+    { name = "kds-args", git = "https://github.com/iamkevinstreet/utils?subdirectory=args&rev=8613c8c38471e2d87b1946692cdf16b659c00e51" },
+    { name = "kds-logs", git = "https://github.com/iamkevinstreet/utils?subdirectory=logs&rev=8613c8c38471e2d87b1946692cdf16b659c00e51" },
+    { name = "kds-settings", git = "https://github.com/iamkevinstreet/utils?subdirectory=settings&rev=8613c8c38471e2d87b1946692cdf16b659c00e51" },
+    { name = "kds-standards", git = "https://github.com/iamkevinstreet/utils?subdirectory=standards&rev=8613c8c38471e2d87b1946692cdf16b659c00e51" },
     { name = "mypy", specifier = ">=1.13" },
     { name = "pip-audit", specifier = ">=2.7" },
     { name = "pytest", specifier = ">=8.3" },
@@ -355,12 +355,12 @@ wheels = [
 [[package]]
 name = "kds-args"
 version = "0.7.1"
-source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=args&rev=28d20c9c817795cb787023f20e4ab99af1b05957#28d20c9c817795cb787023f20e4ab99af1b05957" }
+source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=args&rev=8613c8c38471e2d87b1946692cdf16b659c00e51#8613c8c38471e2d87b1946692cdf16b659c00e51" }
 
 [[package]]
 name = "kds-logs"
 version = "0.7.1"
-source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=logs&rev=28d20c9c817795cb787023f20e4ab99af1b05957#28d20c9c817795cb787023f20e4ab99af1b05957" }
+source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=logs&rev=8613c8c38471e2d87b1946692cdf16b659c00e51#8613c8c38471e2d87b1946692cdf16b659c00e51" }
 dependencies = [
     { name = "kds-args" },
     { name = "kds-settings" },
@@ -372,7 +372,7 @@ dependencies = [
 [[package]]
 name = "kds-settings"
 version = "0.7.1"
-source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=settings&rev=28d20c9c817795cb787023f20e4ab99af1b05957#28d20c9c817795cb787023f20e4ab99af1b05957" }
+source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=settings&rev=8613c8c38471e2d87b1946692cdf16b659c00e51#8613c8c38471e2d87b1946692cdf16b659c00e51" }
 dependencies = [
     { name = "kds-args" },
     { name = "pydantic" },
@@ -382,7 +382,7 @@ dependencies = [
 [[package]]
 name = "kds-standards"
 version = "0.7.1"
-source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=standards&rev=28d20c9c817795cb787023f20e4ab99af1b05957#28d20c9c817795cb787023f20e4ab99af1b05957" }
+source = { git = "https://github.com/iamkevinstreet/utils?subdirectory=standards&rev=8613c8c38471e2d87b1946692cdf16b659c00e51#8613c8c38471e2d87b1946692cdf16b659c00e51" }
 dependencies = [
     { name = "kds-args" },
 ]

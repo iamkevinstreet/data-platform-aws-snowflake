@@ -5,7 +5,7 @@
 ########################################################################
 # Author:            Kevin Street
 # Created on:        2026-11-10
-# Last modified on:  2026-11-10
+# Last modified on:  2026-11-15
 #
 # The checks' environment: the tests that read the Terraform without a
 # cloud account, and ruff, mypy and pytest set to the code standard.
@@ -38,10 +38,10 @@ dev = [
 package = false
 
 [tool.uv.sources]
-kds-args = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "args", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
-kds-logs = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "logs", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
-kds-settings = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "settings", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
-kds-standards = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "standards", rev = "28d20c9c817795cb787023f20e4ab99af1b05957" }
+kds-args = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "args", rev = "8613c8c38471e2d87b1946692cdf16b659c00e51" }
+kds-logs = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "logs", rev = "8613c8c38471e2d87b1946692cdf16b659c00e51" }
+kds-settings = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "settings", rev = "8613c8c38471e2d87b1946692cdf16b659c00e51" }
+kds-standards = { git = "https://github.com/iamkevinstreet/utils", subdirectory = "standards", rev = "8613c8c38471e2d87b1946692cdf16b659c00e51" }
 
 [tool.ruff]
 line-length = 99
