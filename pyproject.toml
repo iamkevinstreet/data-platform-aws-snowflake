@@ -5,7 +5,7 @@
 ########################################################################
 # Author:            Kevin Street
 # Created on:        2026-11-10
-# Last modified on:  2026-11-15
+# Last modified on:  2026-11-18
 #
 # The checks' environment: the tests that read the Terraform without a
 # cloud account, and ruff, mypy and pytest set to the code standard.
@@ -31,7 +31,7 @@ dev = [
   "pip-audit>=2.7",
   "pytest>=8.3",
   "python-hcl2>=7",
-  "ruff==0.17.4",
+  "ruff==0.17.5",
 ]
 
 [tool.uv]
